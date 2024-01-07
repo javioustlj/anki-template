@@ -1,0 +1,21 @@
+<div id="performance">正确率：100%</div>
+<div class="text">{{cloze:Question}}</div>
+{{#Options}}
+<ol class="options" id="optionList"></ol>
+<div id="options" style="display:none">{{Options}}</div>
+<script>
+getOptions()
+</script>
+{{/Options}}
+{{#Extra}}
+ <hr>
+ <div class="extra">{{Extra}}</div>
+{{/Extra}}
+<script>
+//显示正确率
+var performance=document.getElementById("performance")
+if(typeof(mc)!="undefined"){
+ var percent=((mc.correct/mc.total)*100).toFixed(2)
+ performance.innerHTML='本次做题数：'+mc.total+"&nbsp;正确数："+mc.correct+"&nbsp;正确率："+percent+"%"
+}
+</script>

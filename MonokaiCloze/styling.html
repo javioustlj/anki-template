@@ -1,0 +1,146 @@
+</style><!--填充Anki默认style-->
+<style>
+.card {
+    font-family: XHei;
+    font-size: 25px;
+    text-align: left;
+    color: white;
+    background-color: #272822;
+}
+div{
+    margin:5px auto
+}
+.text{
+    color:#e6db74;
+    text-align:left;
+}
+.hint{
+    color:#a6e22e;
+}
+.extra{
+    margin-top:15px;
+    font-size:16px;
+    color: #eeeebb;
+    text-align:left;
+}
+.extra.night_mode{
+    margin-top:15px;
+    font-size:16px;
+    color: #eeeebb;
+    text-align:left;
+}
+.cloze {
+    font-weight: bold;
+    color: #a6e22e;
+}
+.wrong {
+    font-weight: 400;
+    text-decoration:line-through;
+    color: #f92672;
+}
+.options{
+    list-style:upper-latin;
+}
+.options *{
+    cursor:pointer;
+}
+.options *:hover{
+    font-weight:bold;
+}
+.options li{
+    margin-top:5px;
+}
+.options input[name='options']{
+    display:none;
+}
+
+b {
+    text-decoration: none;
+    background-color: #;
+    border-bottom: 2px solid #ec6c4f;
+}
+
+/*定位正确率展示条*/
+#performance{
+    text-align:center;
+    font-size:12px;
+    margin-top:0px;
+}
+</style>
+
+<script>
+function showOptions(){
+    var optionOl=document.getElementById("optionList")
+    var options=document.getElementById("options")
+    var s=0
+    var indexs=[]
+    var optionList=""
+    options=options.innerHTML
+    options=options.replace(/<\/?div>/g,"\n")
+    options=options.replace(/\n+/g,"\n")
+    options=options.replace(/<br.*?>/g,"\n")
+    //去除首尾换行符
+    options=options.replace(/^\n/,"")
+    options=options.replace(/\n$/,"")
+    //以换行符分隔选项为数组
+    options=options.split("\n")
+    //随机组合选项
+    for(var key in options){
+        do{
+            s=Math.random()*(options.length)
+            s=Math.floor(s)
+            if(indexs.join().indexOf(s.toString())==-1){
+            indexs.push(s)
+            break
+        }
+        }while(true)
+        if(s==0){
+            optionList+="<li id='optionTrue'>"+"<label for=option"+s+" >"+options[s]+"</label>"+"<input onclick='showAns(this)' type='radio' name='options'id=option"+s+" />"+"</li>"
+        }else{
+            optionList+="<li>"+"<label for=option"+s+" >"+options[s]+"</label>"+"<input type='radio' onclick='showAns(this)' name='options' id=option"+s+" />"+"</li>"
+        }
+    }
+    optionOl.innerHTML=optionList
+    //把列表存到mc中
+    if(typeof(mc)!="undefined"){
+    mc.list=optionOl.innerHTML
+    }
+}
+function showAns(radio){
+    if(typeof(mc)=="undefined") 
+        return
+    var optionOl=document.getElementById("optionList")
+    mc.list=optionOl.innerHTML
+    mc.checked=radio.id
+    //判断是否选择正确
+    if(radio.id=='option0'){
+        mc.correct++
+    }
+    try{
+        py.link("ansHack")
+    }catch(e){}
+}
+function getOptions(){
+    var optionOl=document.getElementById("optionList")
+    //判断是否有mc变量
+    if(typeof(mc)!="undefined" ){
+        optionOl.innerHTML=mc.list
+        //标出选择项目,默认为错误
+        if(mc.checked){
+            var optionChecked=document.getElementById(mc.checked)
+            optionChecked.parentNode.className="wrong" 
+            optionChecked.checked=true
+            mc.checked=''
+        }
+    }else{
+        showOptions()
+    }
+    //高亮答案选项
+    var optionTrue=document.getElementById("optionTrue")
+    optionTrue.className="cloze" 
+    var radios=document.getElementsByName("options")
+    for(var i in radios){
+        radios[i].disabled=true
+    }
+}
+</script>
