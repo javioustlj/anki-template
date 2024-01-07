@@ -1,0 +1,17 @@
+<div class="kard">
+{{#题目}}
+<div class="section"><span id="heading">{{题目}}</span></div>
+{{/题目}}
+{{#作者}}
+<div class="section author">{{#朝代}}<span id="period">{{朝代}}</span>{{/朝代}} <span id="author">{{作者}}</span></div>
+{{/作者}}
+{{#正文}}
+<div class="section"><span id="content">{{正文}}</span></div>
+{{/正文}}
+{{#赏析}}
+<div class="section note"><span>【赏析】：</span><p class="para" id="appreciation">{{赏析}}</p></div>
+{{/赏析}}
+{{#笔记}}
+<div class="section note"><span>【笔记】：</span><p class="para" id="note">{{笔记}}</p></div>
+{{/笔记}}
+<div>

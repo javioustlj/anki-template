@@ -1,0 +1,99 @@
+</style>
+
+<style>
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.card {
+    font-family: Menlo, baskerville, sans;
+    font-size: 18px;
+    text-align: left;
+    color: #839496;
+    line-height: 1.6em;
+    background-color: #002b36;
+    padding: 0px 0px;
+    margin : 0px;
+    word-wrap: break-word;
+}
+
+.mobile .card{
+    font-size: 18px;
+    margin: 12px;
+}
+
+code#typeans{ 
+    background-color: #002b36;
+}
+.typeGood{
+    color: red;
+}
+.typeBad{
+    color: yellow;
+}
+
+.section {
+    border-style: none;
+    margin: 8px 0;
+    padding: 8px;
+    line-height: 1.6em;
+    min-height: 1.6em;
+}
+
+.wordBold{
+    color: #268bd2;
+    font-weight: bold;
+    font-style: normal;
+}
+
+#partOfSpeech{
+    color: #b58900;
+}
+
+.pronunciation .replaybutton span svg {
+    fill: #dc322f;
+}
+
+</style>
+
+<script type="text/javascript">
+
+//帮助函数：镂空字段
+function makeCloze(){
+    //定义需要镂空的HTML元素
+    var clozeTags=[".wordBold"];
+
+    for (var j = 0; j < clozeTags.length; j++){
+        var obj = document.querySelectorAll(clozeTags[j]);
+        for (var i = 0; i < obj.length; i++){
+            obj[i].innerHTML = obj[i].innerHTML.replace(/./g,"&bull;");
+            obj[i].style.textDecoration = "underline";
+            obj[i].style.letterSpacing = "1px";
+        }
+    }
+
+}
+
+function makeWordBold(){
+    var clozeIds = ["sentence",
+                    "shortDefinition",
+                    "longDefinition",
+                    "collins"];
+    var word = document.getElementById("expression");
+    if (word != "" && word != undefined) {
+        var string = word.innerHTML;
+        for (var j = 0; j < clozeIds.length; j++) {
+            var obj = document.getElementById(clozeIds[j]);
+            if (obj != "" && obj != undefined) {
+                obj.innerHTML = obj.innerHTML.replace(new RegExp(string, "gi"),"<span class='wordBold'>$&</span>");
+            }
+        }
+    }
+}
+
+//初始化卡面变量为正面
+window.cardside = "front"
+</script>
+
+<style>

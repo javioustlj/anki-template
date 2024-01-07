@@ -1,0 +1,11 @@
+1. **Whetting** your appetite
+
+    To *whet* is to sharpen. You could *whet* a knife's blade with a whetting stone, or you could *whet* your appetite by
+    having some Doritos.
+
+#. Python enables programs to be written **compactly** and readably.
+
+    Primary Meanings of *compact* is closely and firmly united or packed together.
+
+    A *compact* is a signed written agreement that binds you to do what you've promised. It also refers to something
+    small or closely grouped together like the row of *compact* rental cars you see when you wanted a van.

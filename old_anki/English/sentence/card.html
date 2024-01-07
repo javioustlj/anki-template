@@ -1,0 +1,17 @@
+{{FrontSide}}
+<hr id="anwser">
+
+<div class="section">
+    <span class="wordBold">{{expression}}</span>
+    {{#phoneticSymbols}}<span id="phoneticSymbols">/{{phoneticSymbols}}/</span>{{/phoneticSymbols}}
+    {{#pronunciation}}<span class="pronunciation">{{pronunciation}}</span>{{/pronunciation}}
+</div>
+{{#shortDefinition}}
+<div class="section"><span id="shortDefinition">{{shortDefinition}}</span></div>
+{{/shortDefinition}}
+{{#longDefinition}}
+<div class="section"><span id="longDefinition">{{longDefinition}}</span></div>
+{{/longDefinition}}
+<script type="text/javascript">
+    makeWordBold();
+</script>
